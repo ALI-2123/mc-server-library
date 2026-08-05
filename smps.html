@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SMP Applications | CraftHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <nav class="glass-card border-b border-gray-800 p-4 flex justify-between items-center px-8">
+        <h1 class="text-2xl font-black text-purple-400 tracking-wider"><a href="index.html">CRAFTHUB SMPs</a></h1>
+        <a href="index.html" class="text-sm bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700">← Back to Hub</a>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-4 py-10 flex-grow w-full">
+        <div class="glass-card p-8 rounded-2xl shadow-xl border border-gray-800">
+            <h2 class="text-2xl font-bold mb-2 text-purple-400">Apply to Whitelisted SMPs</h2>
+            <p class="text-gray-400 text-sm mb-6">Fill out the application form below. Ali and server owners review these directly in the admin dashboard.</p>
+
+            <form id="smpForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Target SMP Name</label>
+                    <input type="text" id="smp_name" required placeholder="e.g. VanillaCraft Season 4" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Minecraft Username</label>
+                        <input type="text" id="mc_username" required placeholder="SteveBuilder" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Discord Tag</label>
+                        <input type="text" id="discord" required placeholder="username#0000" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Your Age</label>
+                    <input type="number" id="age" required min="10" max="99" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Why do you want to join? What is your building/play style?</label>
+                    <textarea id="reason" rows="4" required placeholder="I love building large farms..." class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-lg transition glow-btn">Submit Application</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('smpForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            let applications = JSON.parse(localStorage.getItem('ali_smp_apps')) || [];
+            
+            const newApp = {
+                id: Date.now(),
+                smp_name: document.getElementById('smp_name').value,
+                mc_username: document.getElementById('mc_username').value,
+                discord: document.getElementById('discord').value,
+                age: document.getElementById('age').value,
+                reason: document.getElementById('reason').value
+            };
+
+            applications.push(newApp);
+            localStorage.setItem('ali_smp_apps', JSON.stringify(applications));
+            
+            alert('Application submitted successfully!');
+            document.getElementById('smpForm').reset();
+        });
+    </script>
+</body>
+</html>
