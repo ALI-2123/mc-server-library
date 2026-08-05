@@ -20,11 +20,11 @@
         </div>
     </nav>
 
-    <header class="text-center py-20 px-4">
+    <header class="text-center py-16 px-4">
         <h2 class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Find Your Next Minecraft Adventure</h2>
-        <p class="text-gray-400 max-w-xl mx-auto mb-12">The ultimate GitHub-hosted library for verified cracked, premium, hardcore PvP networks, and whitelisted SMPs.</p>
+        <p class="text-gray-400 max-w-xl mx-auto mb-10">The ultimate library for verified cracked, premium, hardcore PvP networks, and private whitelisted SMPs.</p>
         
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-4 mb-16">
             <a href="category.html?cat=cracked" class="glass-card p-6 rounded-xl hover:border-blue-500 transition group">
                 <h3 class="text-xl font-bold text-blue-400 group-hover:scale-105 transition">Cracked Servers</h3>
                 <p class="text-xs text-gray-400 mt-2">Offline-mode friendly communities.</p>
@@ -42,10 +42,51 @@
                 <p class="text-xs text-gray-400 mt-2">High-performance competitive play.</p>
             </a>
         </div>
+
+        <!-- NEW: Featured SMP Section on Hub -->
+        <section class="max-w-5xl mx-auto text-left px-4">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-purple-400">Featured Whitelisted SMPs</h3>
+                    <p class="text-xs text-gray-400">Join Discord communities or apply to get private server access.</p>
+                </div>
+                <a href="smps.html" class="text-sm bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg font-semibold transition">View All & Apply →</a>
+            </div>
+            <div id="hub-smp-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Loaded dynamically -->
+            </div>
+        </section>
     </header>
 
-    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-900">
+    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-900 mt-12">
         &copy; 2026 CraftHub Server Library. Built for Ali's MC Network.
     </footer>
+
+    <script>
+        function loadHubSMPs() {
+            let apps = JSON.parse(localStorage.getItem('ali_smp_apps')) || [];
+            const grid = document.getElementById('hub-smp-grid');
+
+            if(apps.length === 0) {
+                grid.innerHTML = `<div class="glass-card p-6 rounded-xl text-gray-400 text-sm col-span-3 text-center">No SMP communities listed yet. Submit yours via the application portal!</div>`;
+                return;
+            }
+
+            // Show up to 3 SMP communities on the main page
+            grid.innerHTML = apps.slice(0, 3).map(app => `
+                <div class="glass-card p-6 rounded-xl border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg text-white mb-1">${app.smp_name}</h4>
+                        <p class="text-xs text-gray-400 mb-4">${app.reason.substring(0, 80)}...</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-xs bg-gray-900 px-2.5 py-1 rounded text-purple-300">Owner Contact: ${app.discord}</span>
+                        ${app.discord_link ? `<a href="${app.discord_link}" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3 py-1.5 rounded transition font-semibold">Join Discord</a>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        loadHubSMPs();
+    </script>
 </body>
 </html>
