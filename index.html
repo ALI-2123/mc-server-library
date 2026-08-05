@@ -43,14 +43,14 @@
             </a>
         </div>
 
-        <!-- NEW: Featured SMP Section on Hub -->
+        <!-- Featured Whitelisted SMPs Section -->
         <section class="max-w-5xl mx-auto text-left px-4">
             <div class="flex justify-between items-center mb-6">
                 <div>
                     <h3 class="text-2xl font-bold text-purple-400">Featured Whitelisted SMPs</h3>
                     <p class="text-xs text-gray-400">Join Discord communities or apply to get private server access.</p>
                 </div>
-                <a href="smps.html" class="text-sm bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg font-semibold transition">View All & Apply →</a>
+                <a href="smps.html" class="text-sm bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg font-semibold transition">View All Applications →</a>
             </div>
             <div id="hub-smp-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Loaded dynamically -->
@@ -68,11 +68,10 @@
             const grid = document.getElementById('hub-smp-grid');
 
             if(apps.length === 0) {
-                grid.innerHTML = `<div class="glass-card p-6 rounded-xl text-gray-400 text-sm col-span-3 text-center">No SMP communities listed yet. Submit yours via the application portal!</div>`;
+                grid.innerHTML = `<div class="glass-card p-6 rounded-xl text-gray-400 text-sm col-span-3 text-center">No SMP applications submitted yet.</div>`;
                 return;
             }
 
-            // Show up to 3 SMP communities on the main page
             grid.innerHTML = apps.slice(0, 3).map(app => `
                 <div class="glass-card p-6 rounded-xl border border-gray-800 flex flex-col justify-between">
                     <div>
@@ -80,7 +79,7 @@
                         <p class="text-xs text-gray-400 mb-4">${app.reason.substring(0, 80)}...</p>
                     </div>
                     <div class="flex justify-between items-center mt-4">
-                        <span class="text-xs bg-gray-900 px-2.5 py-1 rounded text-purple-300">Owner Contact: ${app.discord}</span>
+                        <span class="text-xs bg-gray-900 px-2.5 py-1 rounded text-purple-300">By: ${app.mc_username}</span>
                         ${app.discord_link ? `<a href="${app.discord_link}" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3 py-1.5 rounded transition font-semibold">Join Discord</a>` : ''}
                     </div>
                 </div>
