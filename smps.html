@@ -15,7 +15,7 @@
     <main class="max-w-3xl mx-auto px-4 py-10 flex-grow w-full">
         <div class="glass-card p-8 rounded-2xl shadow-xl border border-gray-800">
             <h2 class="text-2xl font-bold mb-2 text-purple-400">Apply to Whitelisted SMPs</h2>
-            <p class="text-gray-400 text-sm mb-6">Fill out the application form below. Ali and server owners review these directly in the admin dashboard.</p>
+            <p class="text-gray-400 text-sm mb-6">Submit your application and provide your Discord Invite Link so players can connect safely without leaking private server IPs.</p>
 
             <form id="smpForm" class="space-y-4">
                 <div>
@@ -31,6 +31,10 @@
                         <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Discord Tag</label>
                         <input type="text" id="discord" required placeholder="username#0000" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500">
                     </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Discord Invite Link (Instead of Private IP)</label>
+                    <input type="url" id="discord_link" required placeholder="https://discord.gg/yourserver" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Your Age</label>
@@ -55,6 +59,7 @@
                 smp_name: document.getElementById('smp_name').value,
                 mc_username: document.getElementById('mc_username').value,
                 discord: document.getElementById('discord').value,
+                discord_link: document.getElementById('discord_link').value,
                 age: document.getElementById('age').value,
                 reason: document.getElementById('reason').value
             };
