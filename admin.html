@@ -34,7 +34,7 @@
             </form>
         </div>
 
-        <!-- Dashboard (Hidden until login) -->
+        <!-- Dashboard -->
         <div id="dashboard-section" class="hidden space-y-8">
             <div class="flex justify-between items-center">
                 <h2 class="text-3xl font-extrabold text-white">Server Management Dashboard</h2>
@@ -93,7 +93,6 @@
     </main>
 
     <script>
-        // Ali's Exact Login Rules
         const USER = "ali";
         const PASS = "1610";
         const CODE = "11#al";
@@ -167,6 +166,7 @@
                         <span class="text-xs bg-gray-800 px-2 py-0.5 rounded text-gray-300">Age: ${app.age}</span>
                     </div>
                     <p class="text-gray-300"><strong>Player:</strong> ${app.mc_username} | <strong>Discord:</strong> ${app.discord}</p>
+                    ${app.discord_link ? `<p class="text-xs text-blue-400 mt-1"><strong>Discord Link:</strong> <a href="${app.discord_link}" target="_blank" class="underline">${app.discord_link}</a></p>` : ''}
                     <p class="text-gray-400 text-xs mt-2 bg-gray-950 p-2 rounded">"${app.reason}"</p>
                 </div>
             `).join('');
